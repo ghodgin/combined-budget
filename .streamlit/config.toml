@@ -1,0 +1,6 @@
+[theme]
+primaryColor = "#228B22"                # Forest Green
+backgroundColor = "#f5f7f4"             # Light neutral (soft background)
+secondaryBackgroundColor = "#e0ede0"    # Pale green-gray for cards/sidebars
+textColor = "#1b1b1b"                   # Dark gray for readability
+font = "sans serif"
