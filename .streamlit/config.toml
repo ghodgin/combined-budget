@@ -1,6 +1,0 @@
-[theme]
-primaryColor = "#50fa7b"                # Bright mint green for accents/buttons
-backgroundColor = "#0f1e13"             # Deep forest green/black background
-secondaryBackgroundColor = "#1e3d26"    # Darker green for sidebars/panels
-textColor = "#e8f5e9"                   # Soft off-white/greenish text
-font = "sans serif"
