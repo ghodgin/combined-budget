@@ -106,7 +106,7 @@ with tab_expense:
     st.sidebar.header("Add New Expense")
 
     with st.sidebar.form("expense_form", clear_on_submit=True):
-        name = st.selectbox("Name", ['Greg', 'Tyler'])
+        name = st.selectbox("Name", ['Greg', 'Tyler'])   # 👈 Added
         date = st.date_input("Date", datetime.today())
         category = st.selectbox("Category", ["Food", "Transport", "Shopping", "Bills", "Entertainment", "Other"])
         amount = st.number_input("Amount", min_value=0.0, format="%.2f")
@@ -119,8 +119,8 @@ with tab_expense:
     # Add expense
     if submitted:
         new_expense = pd.DataFrame(
-            [[date, category, amount, notes]],
-            columns=["Date", "Category", "Amount", "Notes"]
+            [[name, date, category, amount, notes]],   # 👈 Inserted `name`
+            columns=["Name", "Date", "Category", "Amount", "Notes"]  # 👈 Name is first column
         )
         df = pd.concat([df, new_expense], ignore_index=True)
         save_data(df)
@@ -130,13 +130,13 @@ with tab_expense:
     st.sidebar.subheader("Manage Data")
 
     if st.sidebar.button("🧹 Clear All Expenses"):
-        df = pd.DataFrame(columns=["Date", "Category", "Amount", "Notes"])
+        df = pd.DataFrame(columns=["Name", "Date", "Category", "Amount", "Notes"])  # 👈 Reset includes Name
         save_data(df)
         st.sidebar.success("🧹 All expenses cleared!")
 
     if st.sidebar.button("📦 Archive & Clear"):
         archive_data()
-        df = pd.DataFrame(columns=["Date", "Category", "Amount", "Notes"])
+        df = pd.DataFrame(columns=["Name", "Date", "Category", "Amount", "Notes"])  # 👈 Reset includes Name
         save_data(df)
 
     # Dashboard
@@ -157,6 +157,7 @@ with tab_expense:
         daily_sum = df.groupby("Date")["Amount"].sum().reset_index()
         fig2 = px.line(daily_sum, x="Date", y="Amount", title="Expenses Over Time", markers=True)
         st.plotly_chart(fig2, use_container_width=True)
+
 
 
 # ------------------------- #
