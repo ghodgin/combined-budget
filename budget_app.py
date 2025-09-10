@@ -10,16 +10,16 @@ from datetime import datetime, date
 # =========================================================
 # GOOGLE SHEETS SETUP
 # =========================================================
-CREDS_PATH = r"C:\Users\ghodg\OneDrive\Desktop\test\gcp_creds.json"
 SHEET_ID = "1BoAArqUM8Acda63dNiCwKiqC7rH7rTq_0rWvo0aUlH4"
 SHEET_NAME = "Sheet1"  # change if your sheet tab name differs
 
-SCOPES = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive",
-]
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
-creds = Credentials.from_service_account_file(CREDS_PATH, scopes=SCOPES)
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"], 
+    scopes=SCOPES
+)
+
 client = gspread.authorize(creds)
 sheet = client.open_by_key(SHEET_ID).worksheet(SHEET_NAME)
 
