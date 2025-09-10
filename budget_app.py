@@ -161,7 +161,7 @@ with tab_expense:
     if et_submitted:
         append_expense(et_name, et_date, et_category, et_amount, et_notes)
         st.sidebar.success("✅ Expense added!")
-        st.experimental_rerun()
+        # st.experimental_rerun()
 
     # ---- Load & show ----
     df_exp = load_expenses()
